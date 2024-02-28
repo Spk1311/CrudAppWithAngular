@@ -1,0 +1,15 @@
+input.is-inValid{
+    border-color:red;
+}
+.error-span{
+    color: red;
+}
+
+span.d-none{
+    display: block;
+}
+
+.gender-label{
+    margin-right: 30px;
+    margin-left: 10px;
+}

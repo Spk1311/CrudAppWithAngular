@@ -1,0 +1,25 @@
+<h1>Delete Data : </h1>
+<div class="Container">
+    <div class="col-md-8">
+        <label>Id : <span *ngIf="UserData">{{UserData.id }}</span></label>
+    </div>
+    <div class="col-md-8">
+        <label>Name : <span *ngIf="UserData">{{UserData.name }}</span></label>
+    </div>
+    <div class="col-md-8">
+        <label>Email : <span *ngIf="UserData">{{UserData.email}}</span></label>
+    </div>
+    <div class="col-md-8">
+        <label>Phone Number : <span *ngIf="UserData">{{UserData.phone}}</span></label>
+    </div>
+    <div class="col-md-8">
+        <label>Gender : <span *ngIf="UserData">@if (UserData.gender) {Female} @else {Male}</span></label>
+    </div>
+    <div class="col-md-8">
+        <label>BirthDate : <span *ngIf="UserData">{{UserData.birthDate | date}}</span></label>
+    </div>
+    <div class="col-md-10">
+        <button class="btn btn-danger" (click)="DeleteData(UserData.id)">Delete</button>
+        <button class="btn btn-primary" (click)="BackButton()">Back</button>
+    </div>
+</div>

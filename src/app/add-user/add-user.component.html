@@ -1,0 +1,64 @@
+<h1>{{title}}</h1>
+<div class="danger alert-danger" *ngIf="errMes">
+    {{errMes}}
+</div>
+<form class="row g-3" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="col-12">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" #name="ngModel" [class.is-inValid]="name.invalid && name.touched" class="form-control"
+            id="name" name="name" [(ngModel)]="userModel.name" required>
+        <span [class.d-none]="name.valid || name.untouched" class="error-span">Enter Name!</span>
+    </div>
+
+    <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" #email="ngModel" [class.is-inValid]="email.invalid && email.touched" class="form-control"
+            id="inputEmail4" required name="email" [(ngModel)]="userModel.email" [disabled]="EmailPresent">
+        <!-- @if (email.invalid && email.touched) { -->
+        <!-- <span class="error-span">Enter Email Id !</span> -->
+        <!-- } -->
+        <span [class.d-none]="email.valid || email.untouched"  class="error-span">Enter Email Id !</span>
+    </div>
+
+    <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" #password="ngModel"
+            [class.is-inValid]="password.invalid && password.touched" id="inputPassword4" name="password"
+            [(ngModel)]="userModel.password" required>
+        <span [class.d-none]="password.valid || password.untouched" class="error-span">Enter Password !</span>
+    </div>
+
+    <div class="col-12">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" #phone="ngModel" pattern="^\d{10}$" [class.is-inValid]="name.invalid && name.touched"
+            class="form-control" id="phone" name="phone" [(ngModel)]="userModel.phone" required>
+        <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+            <span class="error-span" *ngIf="phone.errors?.['required']">Phone Number is required !</span>
+            <span class="error-span" *ngIf="phone.errors?.['pattern']">Phone Number is must be 10 Digit!</span>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="gender" class="form-label">Gender</label>
+        <div class="custom-control custom-radio"> 
+            <input type="radio" id="male" name="gender" value="0" [(ngModel)]="userModel.gender" >
+            <label for="male" class="gender-label">Male</label>
+
+            <input type="radio" id="female" name="gender" value="1" [(ngModel)]="userModel.gender" >
+            <label for="female" class="gender-label">Female</label>
+        </div>
+        {{userModel.gender}}
+    </div>
+
+    <div class="col-md-6">
+        <label for="dob" class="form-label">Birthdate</label>
+
+        <input type="date" class="form-control" #dob="ngModel" name="dob" [value]="userModel.birthdate" [(ngModel)]="userModel.birthdate" required>
+        <!-- add date : yyyy-mm-dd -->
+        <span [class.d-none]="dob.valid || dob.untouched" class="error-span">Select Your Date of Birth!</span>
+    </div>
+
+    <div class="col-12">
+        <button [disabled]="userForm.form.invalid" type="submit" class="btn btn-primary">Submit Data</button>
+    </div>
+</form>
